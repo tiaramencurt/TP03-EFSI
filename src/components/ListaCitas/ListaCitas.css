@@ -1,3 +1,10 @@
+.sin-citas {
+  color: white;
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.8rem;
+}
+
 .lista-citas .media {
   border-bottom: 1px solid rgb(225,225,225);
   padding-bottom: 3rem;

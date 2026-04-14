@@ -11,7 +11,7 @@ function ListaCitas({ citas, setCitas }) {
     return (
         <div className="one-half column">
             <h2>Administra tus citas</h2>
-            {citas.length === 0 ? (<p>No hay citas</p>) : (citas.map((cita, index) => (
+            {citas.length === 0 ? (<p className="sin-citas">No hay citas</p>) : (citas.map((cita, index) => (
                     <Cita
                         key={index}
                         cita={cita}
