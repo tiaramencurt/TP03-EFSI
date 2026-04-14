@@ -1,8 +1,4 @@
 import "./Formulario.css";
-import CampoTexto from "../CampoTexto";
-import CampoFecha from "../CampoFecha";
-import CampoHora from "../CampoHora";
-import CampoTextarea from "../CampoTextarea";
 import Boton from "../Boton";
 import { useState } from "react";
 
@@ -16,6 +12,8 @@ function Formulario({ setCitas, citas }) {
     sintomas: ""
   });
 
+  const [error, setError] = useState(false);
+
   function handleChange(e) {
     setCita({
       ...cita,
@@ -26,10 +24,24 @@ function Formulario({ setCitas, citas }) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    // agregar cita
+    // VALIDACIÓN
+    if (
+      cita.mascota.trim() === "" ||
+      cita.dueno.trim() === "" ||
+      cita.fecha.trim() === "" ||
+      cita.hora.trim() === "" ||
+      cita.sintomas.trim() === ""
+    ) {
+      setError(true);
+      return;
+    }
+
+    setError(false);
+
+    // AGREGAR CITA
     setCitas([...citas, cita]);
 
-    // resetear form
+    // RESET
     setCita({
       mascota: "",
       dueno: "",
@@ -42,22 +54,54 @@ function Formulario({ setCitas, citas }) {
   return (
     <div className="one-half column">
       <h2>Crear mi Cita</h2>
+
+      {error && <p className="alerta-error">Todos los campos son obligatorios</p>}
+
       <form onSubmit={handleSubmit}>
 
         <label>Nombre Mascota</label>
-        <input type="text" name="mascota" className="u-full-width" onChange={handleChange} value={cita.mascota}/>
+        <input
+          type="text"
+          name="mascota"
+          className="u-full-width"
+          onChange={handleChange}
+          value={cita.mascota}
+        />
 
         <label>Nombre Dueño</label>
-        <input type="text" name="dueno" className="u-full-width" onChange={handleChange} value={cita.dueno}/>
+        <input
+          type="text"
+          name="dueno"
+          className="u-full-width"
+          onChange={handleChange}
+          value={cita.dueno}
+        />
 
         <label>Fecha</label>
-        <input type="date" name="fecha" className="u-full-width" onChange={handleChange} value={cita.fecha}/>
+        <input
+          type="date"
+          name="fecha"
+          className="u-full-width"
+          onChange={handleChange}
+          value={cita.fecha}
+        />
 
         <label>Hora</label>
-        <input type="time" name="hora" className="u-full-width" onChange={handleChange} value={cita.hora}/>
+        <input
+          type="time"
+          name="hora"
+          className="u-full-width"
+          onChange={handleChange}
+          value={cita.hora}
+        />
 
         <label>Sintomas</label>
-        <textarea name="sintomas" className="u-full-width" onChange={handleChange} value={cita.sintomas}/>
+        <textarea
+          name="sintomas"
+          className="u-full-width"
+          onChange={handleChange}
+          value={cita.sintomas}
+        />
 
         <Boton texto="Agregar Cita" tipo="primary"/>
 
