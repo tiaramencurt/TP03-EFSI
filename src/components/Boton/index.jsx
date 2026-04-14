@@ -1,8 +1,11 @@
 import "./Boton.css";
 
-function Boton({texto, tipo}) {
+function Boton({texto, tipo, onClick}) {
   return(
-    <button className={`u-full-width button ${tipo}`}>
+    <button 
+      className={`u-full-width button ${tipo}`}
+      onClick={onClick}
+    >
       {texto}
     </button>
   )

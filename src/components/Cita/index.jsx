@@ -1,6 +1,7 @@
 import "./Cita.css";
 import Boton from "../Boton";
-function Cita({cita}){
+
+function Cita({ cita, eliminarCita }) {
 return(
 <div className="cita">
 <p>
@@ -23,7 +24,9 @@ Hora:
 Sintomas:
 <span> {cita.sintomas}</span>
 </p>
-<Boton texto="Eliminar x" tipo="eliminar"/>
+
+<Boton texto="Eliminar x" tipo="eliminar" onClick={eliminarCita}/>
+
 </div>
 )
 }

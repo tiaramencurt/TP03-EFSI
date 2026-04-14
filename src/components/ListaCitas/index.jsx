@@ -1,34 +1,33 @@
 import "./ListaCitas.css";
 import Cita from "../Cita";
-import { useState } from "react";
 
-function ListaCitas() {
-    const [citas] = useState([
-        {
-            mascota: "Nina",
-            dueno: "Martin",
-            fecha: "2021-08-05",
-            hora: "08:20",
-            sintomas: "Le duele la pierna"
-        },
-        {
-            mascota: "Sifon",
-            dueno: "Flecha",
-            fecha: "2023-08-05",
-            hora: "09:24",
-            sintomas: "Duerme mucho"
-        }
-    ])
+function ListaCitas({ citas, setCitas }) {
+
+    function eliminarCita(index) {
+        const confirmar = confirm("¿Seguro que querés eliminar la cita?");
+        if (!confirmar) return;
+
+        const nuevasCitas = citas.filter((_, i) => i !== index);
+        setCitas(nuevasCitas);
+    }
+
     return (
         <div className="one-half column">
             <h2>Administra tus citas</h2>
-            {citas.map((cita, index) => (
-                <Cita
-                    key={index}
-                    cita={cita}
-                />
-            ))}
+
+            {citas.length === 0 ? (
+                <p>No hay citas</p>
+            ) : (
+                citas.map((cita, index) => (
+                    <Cita
+                        key={index}
+                        cita={cita}
+                        eliminarCita={() => eliminarCita(index)}
+                    />
+                ))
+            )}
         </div>
     )
 }
+
 export default ListaCitas;
