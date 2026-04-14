@@ -1,11 +1,17 @@
 import "./CampoTexto.css";
 
-function CampoTexto({label,placeholder}){
-return(
-<>
-<label>{label}</label>
-<input type="text" placeholder={placeholder} className="u-full-width"/>
-</>
-)
+function CampoTexto({ label, name, value, onChange }) {
+  return (
+    <>
+      <label>{label}</label>
+      <input
+        type="text"
+        name={name}
+        className="u-full-width"
+        value={value}
+        onChange={onChange}
+      />
+    </>
+  )
 }
 export default CampoTexto;
